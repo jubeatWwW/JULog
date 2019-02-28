@@ -5,8 +5,9 @@ import { HelloState } from '../types';
 import { SET_REACT, SET_VUE } from '../constants';
 
 import * as Epics from '../actions/epics';
+import initState from '../store/initState';
 
-export const framework = (state: HelloState, action: FrameworkAction): HelloState => {
+export const framework = (state: HelloState = initState.Hello, action: FrameworkAction): HelloState => {
     switch(action.type) {
         case SET_REACT:
             return { ...state, framework: 'React' };
