@@ -1,4 +1,6 @@
 export default {
-    framework: 'Default Framework',
-    compiler: 'TypeScript',
+    Hello: {
+        framework: 'Default Framework',
+        compiler: 'TypeScript',
+    }
 }

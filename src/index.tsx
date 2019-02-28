@@ -4,12 +4,12 @@ import { Provider, connect } from 'react-redux';
 import { Dispatch } from "redux";
 
 import * as actions from './actions/';
-import { StoreState } from './types';
+import { StoreState, HelloState } from './types';
 import configureStore from './store';
 
 const store = configureStore();
 
-interface HelloProps extends StoreState {
+interface HelloProps extends HelloState {
     setReact: () => void;
     setVue: () => void;
 };
@@ -22,7 +22,7 @@ const Hello = (props: HelloProps) => (
     </>
 );
 
-function mapStateToProps({ compiler, framework }: StoreState) {
+function mapStateToProps({ Hello: { compiler, framework } }: StoreState) {
     return {
         compiler,
         framework,

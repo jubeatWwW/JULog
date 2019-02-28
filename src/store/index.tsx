@@ -1,14 +1,14 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { createEpicMiddleware } from "redux-observable";
 
-import { framework } from '../reducers/index';
+import { reducers, framework } from '../reducers/index';
 import { StoreState } from '../types/index';
 import initState from './initState';
 import { epics } from '../actions/epics';
 
 declare global {
     interface Window {
-      __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: Function;
+        __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: Function;
     }
 }
 const composeEnhancers = (
@@ -20,7 +20,7 @@ export default function () {
     const enhancer = composeEnhancers(applyMiddleware(epicMiddleware));
 
     const store = createStore<StoreState, any, {}, {}>(
-        framework,
+        reducers,
         initState,
         enhancer,
     );

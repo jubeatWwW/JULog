@@ -1,10 +1,12 @@
+import { combineReducers } from 'redux';
+
 import { FrameworkAction } from '../actions';
-import { StoreState } from '../types';
+import { HelloState } from '../types';
 import { SET_REACT, SET_VUE } from '../constants';
 
 import * as Epics from '../actions/epics';
 
-export const framework = (state: StoreState, action: FrameworkAction): StoreState => {
+export const framework = (state: HelloState, action: FrameworkAction): HelloState => {
     switch(action.type) {
         case SET_REACT:
             return { ...state, framework: 'React' };
@@ -14,3 +16,7 @@ export const framework = (state: StoreState, action: FrameworkAction): StoreStat
             return state;
     }
 }
+
+export const reducers = combineReducers({
+    Hello: framework,
+});
