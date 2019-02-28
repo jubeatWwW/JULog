@@ -2,9 +2,12 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider, connect } from 'react-redux';
 import { Dispatch } from "redux";
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router'
 
 import * as actions from './actions/';
 import { StoreState, HelloState } from './types';
+import { history } from './reducers'
 import configureStore from './store';
 
 const store = configureStore();
@@ -21,6 +24,8 @@ const Hello = (props: HelloProps) => (
         <button onClick={props.setVue}>vue</button>
     </>
 );
+
+const Hello2 = () => <h1>Hello World</h1>;
 
 function mapStateToProps({ Hello: { compiler, framework } }: StoreState) {
     return {
@@ -39,7 +44,12 @@ function mapDispatchToProps(dispatch: Dispatch<actions.FrameworkAction>) {
 const HelloRedux = connect(mapStateToProps, mapDispatchToProps)(Hello);
 
 const App = () => (<Provider store={store}>
-    <HelloRedux />
+    <ConnectedRouter history={history}>
+        <>
+            <Route exact path="/" component={HelloRedux} />
+            <Route exact path="/hello" component={Hello2} />
+        </>
+    </ConnectedRouter>
 </Provider>);
 
 
