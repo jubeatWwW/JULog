@@ -13,7 +13,8 @@ const config = {
     module: {
         rules: [
             { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+            { enforce: 'pre', test: /\.tsx?$/, loader: 'tslint-loader' },
+            { enforce: 'pre', test: /\.js$/, loader: "source-map-loader" },
         ],
     },
     resolve: {

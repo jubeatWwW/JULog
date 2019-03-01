@@ -10,9 +10,10 @@ import { SET_REACT, SET_VUE } from '../constants';
 import * as Epics from '../actions/epics';
 import initState from '../store/initState';
 
-export const framework = handleActions({
-        [`${setReact}`]: state => ({...state, framework: 'React'}),
-        [`${setVue}`]: state => ({ ...state, framework: 'Vue'}),
+export const framework = handleActions(
+    {
+        [`${setReact}`]: state => ({ ...state, framework: 'React' }),
+        [`${setVue}`]: state => ({ ...state, framework: 'Vue' }),
     },
     initState.Hello,
 );

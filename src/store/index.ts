@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { createEpicMiddleware } from "redux-observable";
-import { routerMiddleware } from 'connected-react-router'
+import { createEpicMiddleware } from 'redux-observable';
+import { routerMiddleware } from 'connected-react-router';
 
 import { reducers, framework, history } from '../reducers/index';
 import { StoreState } from '../types/index';
@@ -17,12 +17,12 @@ const composeEnhancers = (
     window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
 ) || compose;
 
-export default function () {
+export const configureStore = () => {
     const epicMiddleware = createEpicMiddleware<any>();
     const enhancer = composeEnhancers(
         applyMiddleware(
             routerMiddleware(history),
-            epicMiddleware
+            epicMiddleware,
         ),
     );
 
@@ -35,4 +35,4 @@ export default function () {
     epicMiddleware.run(epics);
 
     return store;
-}
+};

@@ -1,21 +1,21 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { Provider, connect } from 'react-redux';
-import { Dispatch } from "redux";
+import { Dispatch } from 'redux';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { ConnectedRouter } from 'connected-react-router'
+import { ConnectedRouter } from 'connected-react-router';
 
 import * as actions from './actions/';
 import { StoreState, HelloState } from './types';
-import { history } from './reducers'
-import configureStore from './store';
+import { history } from './reducers';
+import { configureStore } from './store';
 
 const store = configureStore();
 
 interface HelloProps extends HelloState {
     setReact: () => void;
     setVue: () => void;
-};
+}
 
 const Hello = (props: HelloProps) => (
     <>
@@ -38,22 +38,23 @@ function mapDispatchToProps(dispatch: Dispatch<any>) {
     return {
         setReact: () => dispatch(actions.setReact()),
         setVue: () => dispatch(actions.setVue()),
-    }
+    };
 }
 
 const HelloRedux = connect(mapStateToProps, mapDispatchToProps)(Hello);
 
-const App = () => (<Provider store={store}>
+const App = () => (
+  <Provider store={store}>
     <ConnectedRouter history={history}>
-        <>
-            <Route exact path="/" component={HelloRedux} />
-            <Route exact path="/hello" component={Hello2} />
-        </>
+      <>
+        <Route exact={true} path="/" component={HelloRedux} />
+        <Route path="/hello" component={Hello2} />
+      </>
     </ConnectedRouter>
-</Provider>);
-
+  </Provider>
+);
 
 ReactDOM.render(
     <App />,
-    document.getElementById("app")
+    document.getElementById('app'),
 );
