@@ -34,7 +34,7 @@ function mapStateToProps({ Hello: { compiler, framework } }: StoreState) {
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<actions.FrameworkAction>) {
+function mapDispatchToProps(dispatch: Dispatch<any>) {
     return {
         setReact: () => dispatch(actions.setReact()),
         setVue: () => dispatch(actions.setVue()),

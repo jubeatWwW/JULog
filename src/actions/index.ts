@@ -1,19 +1,10 @@
+import { createActions } from 'redux-actions';
 import * as constants from '../constants';
 
-export interface FrameworkReact {
-    type: constants.SET_REACT;
-}
+export const { setReact, setVue } = createActions(constants.SET_REACT, constants.SET_VUE);
 
-export interface FrameworkVue {
-    type: constants.SET_VUE;
-}
+import { ActionType } from 'typesafe-actions';
 
-export type FrameworkAction = FrameworkReact | FrameworkVue;
-
-export const setReact = (): FrameworkReact => ({
-    type: constants.SET_REACT,
-});
-
-export const setVue = (): FrameworkVue => ({
-    type: constants.SET_VUE,
-});
+type setReact = ActionType<typeof setReact>;
+type setVue = ActionType<typeof setVue>;
+export type RootAction = setReact | setVue;

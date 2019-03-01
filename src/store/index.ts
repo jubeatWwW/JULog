@@ -5,6 +5,7 @@ import { routerMiddleware } from 'connected-react-router'
 import { reducers, framework, history } from '../reducers/index';
 import { StoreState } from '../types/index';
 import initState from './initState';
+import * as actions from '../actions';
 import { epics } from '../actions/epics';
 
 declare global {
@@ -25,7 +26,7 @@ export default function () {
         ),
     );
 
-    const store = createStore<StoreState, any, {}, {}>(
+    const store = createStore<StoreState, actions.RootAction, {}, {}>(
         reducers,
         initState,
         enhancer,
