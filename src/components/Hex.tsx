@@ -11,10 +11,11 @@ export interface HexProps {
 }
 
 export interface HexOuterProps {
+    className?: string;
     size?: number;
 }
 
-const HexagonOuter = styled.div`
+const HexagonOuter: React.FunctionComponent<HexOuterProps> = styled.div`
     position: relative;
     transform: rotate(-60deg) skewY(30deg);
     overflow: hidden;
@@ -33,16 +34,14 @@ const HexagonInner = styled.div`
     overflow: hidden;
 `;
 
-const defaultProps: HexProps = {
-    size: 300,
-};
-
-export const Hex: React.SFC<HexProps> = (props = defaultProps) => {
-    return (
-        <HexagonOuter className="hexagon" size={props.size || 300} css={props.style}>
-            <HexagonInner css={props.innerStyle}>
-                {props.children}
-            </HexagonInner>
-        </HexagonOuter>
-    );
-};
+export const Hex: React.FunctionComponent<HexProps> = ({
+    size = 300,
+    style,
+    innerStyle,
+    children }) => (
+    <HexagonOuter className="hexagon" size={size} css={style}>
+        <HexagonInner css={innerStyle}>
+            {children}
+        </HexagonInner>
+    </HexagonOuter>
+);
