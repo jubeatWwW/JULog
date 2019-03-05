@@ -15,6 +15,14 @@ const config = {
             { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
             { enforce: 'pre', test: /\.tsx?$/, loader: 'tslint-loader' },
             { enforce: 'pre', test: /\.js$/, loader: "source-map-loader" },
+            {
+                test: /\.less$/,
+                use: [
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader' },
+                    { loader: 'less-loader' },
+                ],
+            }
         ],
     },
     resolve: {

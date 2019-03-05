@@ -8,6 +8,7 @@
             "check-format",
             "allow-pascal-case",
             "ban-keywords"
-        ]
+        ],
+        "jsx-no-multiline-js": false
     }
 }
