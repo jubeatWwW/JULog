@@ -1,26 +1,43 @@
 /** @jsx jsx */
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { jsx, css } from '@emotion/core';
+import { SerializedStyles, jsx, css } from '@emotion/core';
 
 export interface HexProps {
     children?: JSX.Element;
-    style?: any;
+    CSS?: SerializedStyles;
+    style?: object;
     innerStyle?: any;
-    size?: number;
+    size?: string;
+    ref?: React.MutableRefObject<HTMLDivElement>;
+}
+
+const style = css`
+`;
+
+export interface HexagonWrapperProps {
+    size?: string;
+    className?: string;
 }
 
 export interface HexOuterProps {
-    className?: string;
+    style?: object;
     size?: number;
 }
+
+const HexagonWrapper: React.FunctionComponent<HexagonWrapperProps> = styled.div`
+    height: ${(props: HexagonWrapperProps) => props.size};
+    width: ${(props: HexagonWrapperProps) => props.size};
+    display: flex;
+    justify-content: center;
+`;
 
 const HexagonOuter: React.FunctionComponent<HexOuterProps> = styled.div`
     position: relative;
     transform: rotate(-60deg) skewY(30deg);
     overflow: hidden;
-    height: ${(props: HexOuterProps) => props.size}px;
-    width: ${(props: HexOuterProps) => props.size * 0.866}px;
+    height: 100%;
+    width: 86.6%;
 `;
 
 const HexagonInner = styled.div`
@@ -35,13 +52,16 @@ const HexagonInner = styled.div`
 `;
 
 export const Hex: React.FunctionComponent<HexProps> = ({
-    size = 300,
-    style,
+    size = '300px',
+    style = {},
+    CSS = css``,
     innerStyle,
     children }) => (
-    <HexagonOuter className="hexagon" size={size} css={style}>
-        <HexagonInner css={innerStyle}>
+    <HexagonWrapper className="hexagon" size={size}>
+        <HexagonOuter css={CSS} style={style}>
+            <HexagonInner css={innerStyle}>
             {children}
-        </HexagonInner>
-    </HexagonOuter>
+            </HexagonInner>
+        </HexagonOuter>
+    </HexagonWrapper>
 );

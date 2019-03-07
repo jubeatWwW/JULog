@@ -9,7 +9,7 @@ import * as actions from '../../actions/';
 
 import { jsx, css } from '@emotion/core';
 
-import { Hex } from '../../components/Hex';
+import { HexMenu } from '../../components/HexMenu';
 
 interface HelloProps extends HelloState {
     setReact: () => void;
@@ -21,30 +21,9 @@ const MenuWrapper = styled.div`
     height: 100%;
 `;
 
-const HexWrapper = styled.div`
-    position: absolute;
-    top:50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-`;
-
 const Main = (props: HelloProps) => (
     <React.Fragment>
-        <div
-            css={css`
-                display: flex;
-                justify-content: center;`}
-        >
-            <Hex style={{ color: 'black' }} size={500}>
-                <HexWrapper>
-                    <Hex innerStyle={{ backgroundColor: 'black' }} size={480}>
-                        <HexWrapper>
-                            <Hex size={400} />
-                        </HexWrapper>
-                    </Hex>
-                </HexWrapper>
-            </Hex>
-        </div>
+        <HexMenu />
         <h1>Hello from {props.compiler} and {props.framework}!</h1>
         <button onClick={props.setReact}>react</button>
         <button onClick={props.setVue}>vue</button>
