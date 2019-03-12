@@ -16,10 +16,7 @@ import './styles/index.less';
 
 const store = configureStore();
 
-const Hello2 = () => {
-    const [s, su] = React.useState('state');
-    return <h1>Hello World</h1>;
-};
+const Hello2 = () => <h1>Hello World</h1>;
 
 const App = () => (
     <Provider store={store}>
