@@ -6,7 +6,7 @@ import { Hex } from './Hex';
 
 export interface NestedHexProps {
     style?: object;
-    CSS?: SerializedStyles;
+    CSS?: SerializedStyles[];
     size?: string;
     backgroundColor?: string;
     borderColor?: string;
@@ -18,9 +18,6 @@ export interface NestedHexProps {
     onMouseEnter?: React.MouseEventHandler;
     onMouseLeave?: React.MouseEventHandler;
     onClick?: React.MouseEventHandler;
-    status: boolean;
-    delay: number;
-    [props: string]: any;
 }
 
 const HexWrapper = styled.div`
@@ -40,7 +37,7 @@ const nestedCSS = css`
 `;
 
 export const NestedHex: React.FunctionComponent<NestedHexProps> = ({
-    CSS = css``,
+    CSS = [css``],
     style = {},
     size = '100px',
     backgroundColor = '#1e2530',
@@ -53,9 +50,6 @@ export const NestedHex: React.FunctionComponent<NestedHexProps> = ({
     onMouseEnter,
     onMouseLeave,
     onClick,
-    status,
-    delay,
-    ...props
 }) => {
 
     const hexRef = React.useRef(null);
@@ -68,17 +62,11 @@ export const NestedHex: React.FunctionComponent<NestedHexProps> = ({
         setHover(false);
     };
 
-    const showCSS = css`
-        opacity: ${status ? 1 : 0};
-        transition: all .3s ease-in-out ${delay}s;
-        pointer-events: ${status ? 'all' : 'none'};
-    `;
-
     return (
     <Hex
         innerStyle={{ backgroundColor: borderColor }}
         size={size}
-        CSS={[nestedCSS, showCSS, CSS]}
+        CSS={[nestedCSS, ...CSS]}
         style={style}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}

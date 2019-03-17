@@ -10,6 +10,8 @@ import { SET_REACT, SET_VUE } from '../constants';
 import * as Epics from '../actions/epics';
 import initState from '../store/initState';
 
+import { menuReducer } from './menu';
+
 export const framework = handleActions(
     {
         [`${setReact}`]: state => ({ ...state, framework: 'React' }),
@@ -23,4 +25,5 @@ export const history = createBrowserHistory();
 export const reducers = combineReducers({
     router: connectRouter(history),
     Hello: framework,
+    menu: menuReducer,
 });

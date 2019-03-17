@@ -8,7 +8,7 @@ import * as actions from '../../actions/';
 
 import { jsx, css } from '@emotion/core';
 
-import { HexMenu } from '../../components/HexMenu';
+import { HexMenu } from '../../containers/HexMenu';
 
 interface HelloProps extends HelloState {
     setReact: () => void;
