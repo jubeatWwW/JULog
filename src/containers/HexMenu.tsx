@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 import { StoreState } from '../types';
 import { Dispatch } from 'redux';
 import { NestedHex } from '../components/NestedHex';
+import { MenuIcon } from '../components/MenuIcon';
 
 import {
     menuToggle,
@@ -96,7 +97,7 @@ export const HexMenuWrapper: React.FunctionComponent<HexMenuProps> = ({
         [...Array(4 - upper.length)].forEach(() => upper.push(null));
     }
     if (lower.length < 3) {
-        [...Array(3 - upper.length)].forEach(() => lower.push(null));
+        [...Array(3 - lower.length)].forEach(() => lower.push(null));
     }
 
     return (
@@ -113,7 +114,9 @@ export const HexMenuWrapper: React.FunctionComponent<HexMenuProps> = ({
                 size="130px"
                 innerColor="#41B3A3"
                 onClick={menuToggle}
-            />
+            >
+                <MenuIcon status={isMenuSpan} />
+            </NestedHex>
         </MenuToggle>
         <MenuWrapper status={isMenuSpan} />
         <MenuRow>{
